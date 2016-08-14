@@ -12,7 +12,7 @@ body{
   top:0px;
   left:0px;
   width:100%;
-  z-index:9999;
+  z-index:9999;     
 	}
 #head .headWrap{
     height:100%;
@@ -20,7 +20,7 @@ body{
 #head .headWrap .rightArea{
   width:700px;
   z-index:9;
-  position:relative;	
+  position:relative;
 	}		
 #head .topNav li{
     float:left;

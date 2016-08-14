@@ -37,11 +37,11 @@
   <div class="inputDiv">
       <form>
          <input type="text" name="url" class="url"/>
-         <button type="submit" id="postBtn">提交</button>
+         <button id="postBtn">提交</button>
       </form>
   </div>
   <div class="showIframeWrap">
-      <iframe frameborder="0" width="100%" height="100%" src="{{src}}"></iframe>
+      <iframe frameborder="0" width="100%" height="100%" src=""></iframe>
   </div>
 
 </body>
@@ -57,9 +57,8 @@
          var input = $('.inputDiv .url');
          btn.on('click',function(){
             var url = input.val();
-            var reg = /^(https?)://([^./]+)([.]?)([^./]+)([.]?)([^./]+)(/[w-./?%&=]*)?/i;
-            alert(reg.test(url));
-            if(reg.test(url)){
+            var reg = /(\w+):\/\/([^\:|\/]+)(\:\d*)?(.*\/)([^#|\?|\n]+)?(#.*)?(\?.*)?/i; 
+             if(url.match(reg)){
                    $.ajax({
                     url: '/monitor',
                     dataType: 'json',
@@ -69,7 +68,9 @@
                     type: 'post',
                     success: function(json) {
                       if (json.result === 1) {
-                          alert(json.url)
+                          iframe.attr({'src':json.url});
+                      }else{
+                           alert('data error');
                       } 
                     },
                     error: function(err) {
@@ -83,7 +84,7 @@
                    alert('请输入正确的网址！')
               }
                 
-               return false;
+              return false;
          }); 
      };
 </script>

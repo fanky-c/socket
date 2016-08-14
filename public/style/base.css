@@ -27,13 +27,13 @@ a:hover { text-decoration:underline;}
 a:active{border:none;}
 a.unline{text-decoration:underline;}
 html,body{
-   _height:100%;	
+   _height:100%;
 	}
 html{*overflow:auto;}
 body{
 	_behavior: url("style/hover.htc");
 	_background-image: url(about:blank);
-    _background-attachment: fixed;
+  _background-attachment: fixed;
 }
 .moreHide{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .verT{vertival-top:top;}
