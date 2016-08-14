@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>前端监控</title>
+<link rel="stylesheet" type="text/css" href="/style/base.css">
+<link rel="stylesheet" type="text/css" href="/style/global.css">
+<link type="text/css" rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+<!--头部START-->
+ <div id="head">
+    <div class="w1200 mb headWrap clearfix">
+        <img src="images/logo.jpg" width="294" height="49" alt="" class="logo fl mt24">
+        <div class="fr clearfix rightArea">
+          <ul class="topNav fl clearfix">
+            <li class="outLine"><a href="/brief.html" title="">概述</a></li>
+            <li class="alert"><a href="/warn.html" title="" >告警</a></li>
+            <li class="monitor"><a href="/monitor.html" class="active" title="">监控</a></li>
+            <li class="report"><a href="/report.html" title="">报告</a></li>
+            <li class="config"><a href="/config.html" title="">配置</a></li>
+            <li class="system"><a href="/system.html" title="">系统</a></li>
+          </ul>
+          
+          <div class="login fr pa">
+              <div class="txt f16_s tc col_w" title="{{user}}">{{user}}</div>
+              <ul class="pa muen">
+                <li><a href="/users/update/{{userId}}">修改密码</a></li>
+                <li><a href="/logout.html">退出</a></li>
+              </ul>
+          </div>
+        </div>
+    </div>
+ </div>
+<!--头部END--> 
+  <div class="inputDiv">
+      <form>
+         <input type="text" name="url" class="url"/>
+         <button type="submit" id="postBtn">提交</button>
+      </form>
+  </div>
+  <div class="showIframeWrap">
+      <iframe frameborder="0" width="100%" height="100%" src="{{src}}"></iframe>
+  </div>
+
+</body>
+<script type="text/javascript" src="/script/require.js"></script>
+<script type="text/javascript">
+     require(['/script/lib/jquery-1.10.2.min.js'],function(){
+          post($);   
+     });
+
+     function post($){
+         var btn = $('#postBtn');
+         var iframe = $('.showIframeWrap iframe');
+         var input = $('.inputDiv .url');
+         btn.on('click',function(){
+            var url = input.val();
+            var reg = /^(https?)://([^./]+)([.]?)([^./]+)([.]?)([^./]+)(/[w-./?%&=]*)?/i;
+            alert(reg.test(url));
+            if(reg.test(url)){
+                   $.ajax({
+                    url: '/monitor',
+                    dataType: 'json',
+                    data: {
+                      url: url
+                    },
+                    type: 'post',
+                    success: function(json) {
+                      if (json.result === 1) {
+                          alert(json.url)
+                      } 
+                    },
+                    error: function(err) {
+                      console.log('error:' + err);
+                    },
+                    exception: function(ex) {
+                      console.log('exception:' + ex);
+                    }
+                  });               
+              }else{
+                   alert('请输入正确的网址！')
+              }
+                
+               return false;
+         }); 
+     };
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>前端监控</title>
+<link rel="stylesheet" type="text/css" href="/style/base.css">
+<link rel="stylesheet" type="text/css" href="/style/global.css">
+<link type="text/css" rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+<!--头部START-->
+ <div id="head">
+    <div class="w1200 mb headWrap clearfix">
+        <img src="images/logo.jpg" width="294" height="49" alt="" class="logo fl mt24">
+        <div class="fr clearfix rightArea">
+          <ul class="topNav fl clearfix">
+            <li class="outLine"><a href="/brief.html" title="">概述</a></li>
+            <li class="alert"><a href="/warn.html" title="">告警</a></li>
+            <li class="monitor"><a href="/monitor.html" title="">监控</a></li>
+            <li class="report"><a href="/report.html" class="active" title="">报告</a></li>
+            <li class="config"><a href="/config.html" title="">配置</a></li>
+            <li class="system"><a href="/system.html" title="">系统</a></li>
+          </ul>
+          
+          <div class="login fr pa">
+              <div class="txt f16_s tc col_w" title="{{user}}">{{user}}</div>
+              <ul class="pa muen">
+                <li><a href="/users/update/{{userId}}">修改密码</a></li>
+                <li><a href="/logout.html">退出</a></li>
+              </ul>
+          </div>
+        </div>
+    </div>
+ </div>
+<!--头部END--> 
+
+    <div id="container" style="width: 90%; margin:200px auto 0 auto;"></div>
+</body>
+<script type="text/javascript" src="/script/require.js" data-main="/script/warn.js"></script>
+</html>

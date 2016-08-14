@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>前端监控</title>
+    <link rel='stylesheet' href='/style/style.css' />
+  </head>
+  <body class="regPage">
+
+  	<header>
+  		<h1 class="title">{{title}}</h1>
+  	</header>
+
+     <div class="opertUser">
+       {{if oneUser }}
+           <form method="POST" action="/users/update">
+              <input type="hidden" name="oneUser[_id]" value="{{oneUser._id | toSting}}">
+              <div class="form-group">
+                 <laber for="inputTitle">帐号</laber>
+                 <input type="text" name="oneUser[name]" value="{{oneUser.name}}">
+               </div>
+               <div class="form-group">
+                <laber for="inputTitle">密码</laber>
+                <input type="text" name="oneUser[password]" value="{{oneUser.password}}">
+               </div>
+               <button type="submit">修改用户</button>
+             </form>            
+        {{else}}
+            <form method="POST" action="/users/add">
+                <div class="form-group">
+                   <laber for="inputTitle">帐号</laber>
+                   <input type="text" name="user[name]" >
+                </div>
+                <div class="form-group">
+                  <laber for="inputTitle">密码</laber>
+                  <input type="password" name="user[password]">
+                </div>
+                <button type="submit">注册用户</button>
+            </form>
+        {{/if}}       
+    </div>
+
+   {{if user.length>0 }} 
+      <div class="userTable">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <thead>
+            <tr>
+               <th>姓名</th><th>密码</th><th>修改</th><th>删除</th>
+            </tr>
+          </thead>
+          <tbody>
+               {{each user}}           
+                <tr>
+                  <td>{{$value.name}}</td>
+                  <td>{{$value.password}}</td>
+                  <td><a href="./users/update/{{$value._id | toSting}}" target="_blank">修改</a></td>
+                  <td><a href="./users/delete/{{$value._id | toSting}}">删除</a></td>
+                </tr>
+              {{/each}}           
+          </tbody>
+        </table>
+      </div>
+    {{/if}}
+
+  </body>
+</html>

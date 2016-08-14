@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>前端监控</title>
+<link rel="stylesheet" type="text/css" href="/style/base.css">
+<link rel="stylesheet" type="text/css" href="/style/global.css">
+</head>
+
+<body>
+<!--头部START-->
+ <div id="head">
+    <div class="w1200 mb headWrap clearfix">
+        <img src="images/logo.jpg" width="294" height="49" alt="" class="logo fl mt24">
+        <div class="fr clearfix rightArea">
+          <ul class="topNav fl clearfix">
+            <li class="outLine"><a href="/brief.html" title="" class="active">概述</a></li>
+            <li class="alert"><a href="/warn.html" title="">告警</a></li>
+            <li class="monitor"><a href="/monitor.html" title="">监控</a></li>
+            <li class="report"><a href="/report.html" title="">报告</a></li>
+            <li class="config"><a href="/config.html" title="">配置</a></li>
+            <li class="system"><a href="/system.html" title="">系统</a></li>
+          </ul>
+          
+          <div class="login fr pa">
+              <div class="txt f16_s tc col_w" title="{{user}}">{{user}}</div>
+              <ul class="pa muen">
+                <li><a href="/users/update/{{userId}}">修改密码</a></li>
+                <li><a href="/logout.html">退出</a></li>
+              </ul>
+          </div>
+        </div>
+    </div>
+ </div>
+<!--头部END-->  
+
+<div class="w1200 mb clearfix mainSides pb30 fixedWrap">
+   
+   <!--左边区域srart-->
+  <div class="fl bigLeftArea w900 clearfix">
+      <div class="w440 fl">
+          <div class="title_item pr">
+            <h3 class="textTitle f16_s ml20 fl mr10">监控点统计</h3>
+            <div class="count bRadius5 mt16 fl">
+               <span class="countNum"></span>
+            </div>
+            <div class="pa popTxtSay tc none">
+               <i class="upIcon icon_items"></i>
+               <span class="mt15 db col_2e">监控点用量/余量</span>
+               <span class="db mt2"><strong class="col_f4">2339</strong>/<strong class="col_97">8393</strong></span>
+            </div>
+            <a href="#" title="" class="col_w fr mt13 pr20">添加监控点</a>
+          </div>
+          <div class="findPoint">
+            <div class="nth_1">
+              <i class="icon_items webSites mb">站点类</i>
+              <span class="num1 db mb tc mt10 col_5f">1098</span>
+            </div>
+            <div class="nth_2">
+              <i class="icon_items server mb">服务器类</i>
+              <span class="num1 db mb tc mt10 col_5f">713</span>              
+            </div>
+            <div class="nth_3">
+              <i class="icon_items business mb">业务类</i>
+              <span class="num1 db mb tc mt10 col_5f">102</span>              
+            </div>
+          </div>
+      </div>
+      
+      <div class="w440 fr bg_w mb18">
+          <div class="title_item pr">
+            <h3 class="textTitle f16_s ml20 fl mr10">告警统计</h3>
+            <div class="count bRadius5 mt16 fl">
+               <span class="countNum"></span>
+            </div>
+            <div class="pa popTxtSay tc none">
+               <i class="upIcon icon_items"></i>
+               <span class="mt15 db col_2e">短信用量/余量</span>
+               <span class="db mt2"><strong class="col_f4">2339</strong>/<strong class="col_97">8393</strong></span>
+            </div>
+            <a href="#" title="" class="col_w fr mt13 pr20">处理告警</a>
+            <a href="#" title="" class="col_w fr mt13 pr20">查看历史</a>
+          </div>
+          <table cellpadding="0" cellspacing="0" class="mt15 tableAlert mb" width="400">
+            <tr>
+                <td width="67">&nbsp;</td>
+                <td width="111"><img src="images/2.jpg" width="110" height="76"></td>
+                <td width="111"><img src="images/3.jpg" width="110" height="76"></td>
+                <td width="111"><img src="images/4.jpg" width="110" height="76"></td>
+             </tr>
+            <tr>
+              <td height="30">当前告警</td>
+              <td><strong class="col_f4">98</strong>个</td>
+              <td><strong class="col_ff">213</strong>个</td>
+              <td><strong class="col_fc">118</strong>个</td>
+           </tr>
+           <tr>
+             <td height="30">今日恢复</td>
+             <td><strong class="col_97">37</strong>个</td>
+             <td><strong class="col_97">18</strong>个</td>
+             <td><strong class="col_97">23</strong>个</td>
+           </tr>
+          </table>
+      </div>
+      
+      <div class="clearfix clear bg_w h465">
+         <div class="title_item pr">
+            <h3 class="textTitle f16_s ml20 fl mr10">监控点统计</h3>
+            <a href="#" title="" class="col_w fr mt13 pr20">更多</a>
+          </div>
+          
+         <div class="fl">
+           <table cellspacing="0" cellspacing="0" class="monitorTable w410 ml30 mt30" id="monPon">
+             <thead>
+               <tr>
+                 <th class="tl" height="40">站点名称</th><th>当前可用率</th><th>当前速率</th><th width="30">&nbsp;</th>
+               </tr>
+             </thead>
+             <tbody>
+              <tr class="active toggleTr">
+                 <td class="tl" height="40">http://mail.10086.cn</td><td class="col_f4">46%</td><td class="col_f4">13.48s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr>                            
+              <tr>   
+                 <td colspan="4">
+                   <table width="100%" class="innerTable">                 
+                      <tr><td class="tll" width="145">监控速度</td><td colspan="3"></td></tr>
+                      <tr><td class="tll"><span class="fast bRadius3">最快</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                      <tr><td class="tll"><span class="slow bRadius3">最慢</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                      <tr><td class="tll"><span class="average bRadius3">平均</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                   </table>
+                 </td>
+               </tr> 
+              <tr class="toggleTr">
+                 <td class="tl" height="40">http://mail.10086.cn</td><td class="col_f4">46%</td><td class="col_f4">13.48s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr>                            
+              <tr class="none">   
+                 <td colspan="4">
+                   <table width="100%" class="innerTable">                 
+                      <tr><td class="tll" width="145">监控速度</td><td colspan="3"></td></tr>
+                      <tr><td class="tll"><span class="fast bRadius3">最快</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                      <tr><td class="tll"><span class="slow bRadius3">最慢</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                      <tr><td class="tll"><span class="average bRadius3">平均</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                   </table>
+                 </td>
+               </tr> 
+              <tr class="toggleTr">
+                 <td class="tl" height="40">http://mail.10086.cn</td><td class="col_f4">46%</td><td class="col_f4">13.48s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr>                            
+              <tr class="none">   
+                 <td colspan="4">
+                   <table width="100%" class="innerTable">                 
+                      <tr><td class="tll" width="145">监控速度</td><td colspan="3"></td></tr>
+                      <tr><td class="tll"><span class="fast bRadius3">最快</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                      <tr><td class="tll"><span class="slow bRadius3">最慢</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                      <tr><td class="tll"><span class="average bRadius3">平均</span>521kb/s</td><td colspan="3">中国电信-武汉市</td></tr>
+                   </table>
+                 </td>
+               </tr>                                             
+             </tbody>
+           </table>
+         </div>
+        
+        <img src="images/test1.jpg" width="427" height="378" class="db fr">
+      </div>
+      
+      <div class="clearfix clear mt18 bg_w h360">
+         <div class="title_item pr">
+            <h3 class="textTitle f16_s ml20 fl mr10">服务器监控</h3>
+          </div>
+          
+         <div class="fl">
+           <table cellspacing="0" cellspacing="0" class="monitorTable w410 ml30 mt30" id="serverPon">
+             <thead>
+               <tr>
+                 <th class="tl" height="40" style="text-indent:40px;">服务器名称</th><th>综合状态</th><th>CPU负载</th><th>磁盘I/O</th><th width="30">&nbsp;</th>
+               </tr>
+             </thead>
+             <tbody>
+              <tr class="active">
+                 <td class="tl" height="40">139邮箱web服务器</td><td class="col_f4">异常</td><td class="col_f4">28.08k</td><td class="col_f4">1.48kb/s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr>
+              <tr>
+                 <td class="tl" height="40">139邮箱web服务器</td><td class="col_f4">异常</td><td class="col_97">28.08k</td><td class="col_f4">1.48kb/s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr>
+              <tr>
+                 <td class="tl" height="40">139邮箱web服务器</td><td>正常</td><td class="col_97">28.08k</td><td>1.48kb/s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr> 
+              <tr>
+                 <td class="tl" height="40">139邮箱web服务器</td><td>正常</td><td class="col_97">28.08k</td><td>1.48kb/s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr>  
+              <tr>
+                 <td class="tl" height="40">139邮箱web服务器</td><td>正常</td><td class="col_97">28.08k</td><td>1.48kb/s</td><td><i class="rightIcon icon_items none"></i></td>
+              </tr>                                                                                                                              
+             </tbody>
+           </table>
+         </div>
+        
+        <img src="images/test2.jpg" width="422" height="244" class="db fr mt40">
+      </div>
+  </div>
+  <!--左边区域end-->
+  
+  
+  
+   <!--右边区域srart-->
+  <div class="fr bigRightArea w280">
+      <div class="title_item pr">
+        <h3 class="textTitle f16_s ml20 fl mr10">即时检测</h3>
+      </div>
+      <div class="bg_w col_8b">
+           <div class="w240 mb h180">
+              <span class="db mb20 pt20">一键提交，快速全面的获取站点分析数据</span>
+              <input type="text" value="输入网址或IP地址" class="col_8b input1 ipInput" onFocus="_zc.inputFocus(this,'输入网址或IP地址')" onBlur="_zc.inputBlur(this,'输入网址或IP地址')">
+              <a href="#" title="" class="db btn1 mb mt20">立即检测</a>
+          </div>
+      </div>
+      
+      <div class="title_item pr mt18">
+        <h3 class="textTitle f16_s ml20 fl mr10">我的账户记录</h3>
+      </div>
+      <div class="bg_w h180">
+        <ul class="w242 mb col_2e accountUl pt10">
+          <li class="nth_1 clearfix">
+            <div class="fl w130"><b class="fn f14_s">我负责的监控点(个)</b><span class="db num1 col_f4 tc w120">1920</span></div>
+            <div class="fl w98 col_8b"><p>站点类721个</p><p>服务器类209个</p><p>业务类301个</p></div>
+          </li>
+          <li class="clearfix">
+            <div class="fl w130"><b class="fn f14_s">已恢复的告警(个)</b><span class="db num1 col_97 tc w120">67</span></div>
+            <div class="fl w98 col_8b"><p>重要72个</p><p>次要43个</p><p>提示12个</p></div>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="title_item pr mt18">
+        <h3 class="textTitle f16_s ml20 fl mr10">我的快捷操作</h3>
+      </div>
+      <div class="h280 bg_w">
+        <ul class="shortCut clearfix">
+          <li><a href="#" class="icon_items nth_1 mr20">配置监控点</a><a href="#" class="icon_items nth_2">添加服务器</a></li>
+          <li><a href="#" class="icon_items nth_3 mr20">新增子账户</a><a href="#" class="icon_items nth_4">新增角色</a></li>
+        </ul>
+      </div>
+      
+      <div class="title_item pr mt18">
+        <h3 class="textTitle f16_s ml20 fl mr10">常见问题</h3>
+      </div>
+      <div class="h227 bg_w">
+       <ul class="questions pt20">
+         <li><a href="#" title="" class="active">服务器性能监控常见问题</a></li>
+         <li><a href="#" title="">什么是响应时间？</a></li>
+         <li><a href="#" title="">监控频率越快越好吗？</a></li>
+         <li><a href="#" title="">服务性能监控都包括哪些指标？</a></li>
+         <li><a href="#" title="">监控点都分布在哪些地方？</a></li>
+         <li><a href="#" title="">告警消息包括哪些类型？</a></li>
+       </ul>
+      </div>
+  </div>
+  <!--右边区域end-->  
+</div>
+<script type="text/javascript" src="/script/require.js"></script>
+<script type="text/javascript">
+    require.config({
+      urlArgs: "bust=" +  (new Date()).getTime()  //线上屏蔽
+    });
+
+   require(['/script/jquery-1.10.2.min.js'],function(){
+         require(['/script/index.js'],function(index){
+             index.login();
+         });             
+   });
+</script>
+</body>
+</html>

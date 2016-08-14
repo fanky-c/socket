@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>前端监控</title>
+<link rel="stylesheet" type="text/css" href="/style/base.css">
+<link rel="stylesheet" type="text/css" href="/style/global.css">
+</head>
+
+<body class="bg_w">
+   <!--头部start-->
+    <div class="indexHeader mb clearfix w960">
+       <img src="images/logo2.jpg" width="402" height="69" class="fl mt18">
+        <ul class="fr sideMuenNav mt24">
+          <li class="mr50"><a href="./brief.html" class="icon_items1 website">讯追监控官网</a></li>
+          <li class=" mr50"><a href="javascript:;" class="icon_items1 contactUs">联系我们</a></li>
+          <li><a href="javascript:;" class="icon_items1 help">帮助</a></li>
+        </ul>
+    </div>
+  <!--头部end-->
+  
+  <div class="indexContent">
+      <div class="w960 mb main pr">
+          <div class="loginSection  bg_w pa">
+            <div class="insideWrap mb">
+               <table width="100%">
+                 <tr>
+                   <td>
+                      <div class="pr loginInputWrap">
+                         <span class="icon_items1 pa accountIcon left0 top0">账户</span>
+                         <input type="text" placeholder="账号" id="account" class="pa right0 top0 input3 col_9c" >
+                      </div>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td height="90">
+                      <div class="pr loginInputWrap">
+                         <span class="icon_items1 pa passWordIcon left0 top0">密码</span>
+                         <input type="password" placeholder="密码" id="password" class="pa right0 top0 input3 col_9c" >
+                      </div>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <span class="fl checkboxWrap" style="display:none;">
+                       <i class="checkbox db fl mr5 checkboxActive" data-check="1"></i>
+                       <strong class="fl">记住用户名</strong>
+                     </span>
+                     <span class="fr textLogin">
+                       <a href="./users.html" target="_blank">注册</a>
+                       <a href="./users.html" target="_blank">忘记密码？</a>
+                     </span>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td height="90">
+                     <a href="javascript:;" id="login" class="loginBtn db mb icon_items1"></a>
+                   </td>
+                 </tr>
+               </table>
+            </div>
+          </div>
+      </div>
+  </div>
+  
+  <!--脚部start-->
+  <div class="w960 mb tc pt24 lh180 col_8d f13" style="display:none;">
+     京ICP备1234567号-1 Copyright@ 2014-2015<br>fanky_c
+  </div>
+  <!--脚部end-->
+</body>
+<script type="text/javascript" src="/script/require.js"></script>
+<script type="text/javascript">
+    require.config({
+      urlArgs: "bust=" +  (new Date()).getTime()  //线上屏蔽
+    });
+
+   require(['/script/lib/jquery-1.10.2.min.js'],function(){
+         require(['/script/index.js'],function(index){
+             index.login();
+         });             
+   });
+</script>
+</html>
