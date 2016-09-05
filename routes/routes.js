@@ -12,6 +12,7 @@ var report = require('./report');
 var config = require('./config');
 var system = require('./system');
 var users = require('./users');
+var safe = require('./safe');
 
 /**
     操作cookie
@@ -57,16 +58,41 @@ router.post('/log.html',function(req,res,next){
       fs.writeFile('./public/log/log.txt', JSON.stringify(str),function(err){
             if (err) throw err;
             str.push(req.body);
-            console.log('写入文件成功：'+new Date().getTime());         
+            console.log('写入jsError文件成功：'+new Date().getTime());         
       });
 
 });
 
-//监听文件是否变化 
+//监听jsError日志文件是否变化 
 fs.watchFile('./public/log/log.txt',function(curr, prev){
-     console.log('监听文件前一个状态: ' + prev.mtime);     
-     console.log('监听文件现在状态: ' + curr.mtime);    
+     console.log('监听jsError文件前一个状态: ' + prev.mtime);     
+     console.log('监听jsError文件现在状态: ' + curr.mtime);    
 });
+
+//生产被劫持文件
+var strSafe = [];
+router.post('/safeReport',function(req,res,next){
+     var msg = req.body.msg || '';
+     var value = req.body.value || '';
+     var time = req.body.time;
+     var activeName = req.body.activeName || '';  
+     
+     var cwd = process.cwd();   //当前的路径
+
+      if(!fs.existsSync('./public/safelog')){
+          fs.mkdirSync('./public/safelog',0777);
+      };     
+     
+      //写入、添加文件
+      strSafe.push(req.body);
+      fs.writeFile('./public/log/safelog.txt', JSON.stringify(strSafe),function(err){
+            if (err) throw err;
+            strSafe.push(req.body);
+            console.log('写入jsSafe文件成功：'+new Date().getTime());         
+      });
+
+});
+
 
 
 //首页
@@ -146,6 +172,18 @@ router.get('/brief.html', function(req, res, next) {
      }
 
 });
+
+//安全页面
+router.get('/safe.html', function(req, res, next) {
+     // if(req.session.name){
+     //      safe.router(req, res, next);
+     // }else{
+     //     return res.redirect('/index.html');
+     // }
+      safe.router(req, res, next);
+
+});
+
 
 //登录
 router.post('/login', function(req, res){

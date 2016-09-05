@@ -59,6 +59,7 @@
             var url = input.val();
             var reg = /(\w+):\/\/([^\:|\/]+)(\:\d*)?(.*\/)([^#|\?|\n]+)?(#.*)?(\?.*)?/i; 
              if(url.match(reg)){
+                  $('<div class="loading"></div>').appendTo($('body'));              
                    $.ajax({
                     url: '/monitor',
                     dataType: 'json',
@@ -71,13 +72,16 @@
                           iframe.attr({'src':json.url});
                       }else{
                            alert('data error');
-                      } 
+                      }
+                      $('.loading').remove(); 
                     },
                     error: function(err) {
                       console.log('error:' + err);
+                      $('.loading').remove();
                     },
                     exception: function(ex) {
                       console.log('exception:' + ex);
+                      $('.loading').remove();
                     }
                   });               
               }else{

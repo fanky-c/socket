@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var logger = require('morgan');         //打印日志
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -29,7 +29,7 @@ template.helper('toSting',function(id){
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));  //打印日志
+//app.use(logger('dev'));  //打印日志
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -43,6 +43,24 @@ app.use(session({
         maxAge:1000*60*10 //过期时间设置(单位毫秒)
     }
 }));
+
+//日志
+var log4js = require('log4js');
+log4js.configure({
+  appenders: [
+        {
+          type: 'DateFile',
+          filename: 'public/access/access.log',
+          pattern: '-yyyy-MM-dd.log',
+          alwaysIncludePattern: true,
+          category: 'access'
+        },
+        { 
+           type: 'console'           
+        }
+  ]
+});
+app.use(log4js.connectLogger(log4js.getLogger('access'), { level: log4js.levels.INFO }));
 
 
 //允许跨域

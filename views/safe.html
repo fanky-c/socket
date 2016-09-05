@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{title}}</title>
+</head>
+<style type="text/css">
+.container{
+	overflow: hidden;
+	width: 800px;
+}
+.btn{
+	font-size: 18px;
+	display: block;
+	float: left;
+	padding: 10px;
+	cursor: pointer;
+	background-color: #03A9F4;
+	color: #fff;
+	margin-right: 20px;
+	margin-bottom: 40px;
+}
+.btn:hover{
+	background-color: #1B84B3;
+}
+.cf::after{
+	content: "";
+	visibility:hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+#cnzz_stat_icon_1259441963 {
+	display: block;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+</style>
+<body>
+<div class="container">
+	<div class="group cf">
+		<div id='btn-inline-click' class="btn" onclick="alert('xss')">此按钮被注入恶意内联click事件</div>
+		<div id='btn-inline-click2' class="btn cf" onclick="alert('123')">此按钮被注入非恶意内联click事件</div>
+	</div>
+
+	<div class="group cf">
+		<a id='a-inline-href' class="btn" href="javascript:alert('xss')">此a标签href被注入javascript:恶意代码</a>
+		<a id='a-inline-href2' class="btn cf" href="javascript:alert('123')">此a标签href被注入javascript:非恶意代码</a>
+	</div>
+
+	<div class="group cf">
+		<div id='btn-append-xss-js' class="btn">动态添加可疑脚本文件</div>
+		<div id='btn-append-normal-js' class="btn">动态添加正常脚本文件</div>
+	</div>
+
+	<div class="group cf">
+		<div id='btn-setAttribute' class="btn">使用setAttribute添加XSS内容</div>
+		<div id='btn-document-write' class="btn">使用document-write添加XSS内容</div>
+	</div>
+</div>
+<script type="text/javascript" src="/script/require.js"></script>
+<script>
+
+require.config({
+  urlArgs: "bust=" +  (new Date()).getTime()  //线上屏蔽
+});
+
+require(['/script/lib/httphijack1.0.0.js'],function(){
+	
+	window.httphijack.init();
+
+	// 动态添加可疑脚本文件
+	document.getElementById('btn-append-xss-js').addEventListener('click', function(){
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = './script/lib/xss/b.js';
+
+		document.getElementsByTagName('body')[0].appendChild(script);
+	});
+
+	// 动态添加正常脚本文件
+	document.getElementById('btn-append-normal-js').addEventListener('click', function(){
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = './script/lib/normal/normal.js';
+
+		document.getElementsByTagName('body')[0].appendChild(script);
+	});
+
+	// 动态添加正常脚本文件
+	document.getElementById('btn-document-write').addEventListener('click', function(){
+		document.write('XSS hijack');
+	});
+
+		// 动态添加正常脚本文件
+	document.getElementById('btn-setAttribute').addEventListener('click', function(){
+		var script = document.createElement('script');
+		script.setAttribute('type', 'text/javascript');
+		script.setAttribute('src', 'http://www.example.com/xss/c.js');
+
+		document.getElementsByTagName('body')[0].appendChild(script);
+	});
+});
+</script>
+</body>
+</html>
