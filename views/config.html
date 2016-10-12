@@ -35,7 +35,32 @@
  </div>
 <!--头部END--> 
 
-    <div id="container" style="width: 90%; margin:200px auto 0 auto;"></div>
+    <!-- <div id="container" style="width: 90%; margin:200px auto 0 auto;"></div> -->
+    <div class="showErrorMessage" id="showErrorMessage">
+        <table width="100%" cellpadding="0" cellspacing="0">
+             <thead>
+               <tr>
+                   <td>上个文档的卸载时间</td>
+                   <td>重定向时间</td>
+                   <td>DNS查询时间</td>
+                   <td>服务器连接时间</td>
+                   <td>服务器响应时间</td>
+                   <td>网页下载时间</td>
+                   <td>首次渲染时间</td>
+                   <td>dom ready时间</td>
+                   <td>onload时间</td>
+                   <td>白屏时间</td>
+                   <td>整个过程的时间之和</td>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+                   <td></td>
+               </tr>
+             </tbody>
+        </table>
+    </div>
+
 </body>
-<script type="text/javascript" src="/script/require.js" data-main="/script/warn.js"></script>
+<script type="text/javascript" src="/script/require.js"></script>
 </html>

@@ -160,7 +160,7 @@
         // 注销事件
         elem[eventName] = null;
         console.log('拦截可疑内联事件:' + code);
-        hijackReport('拦截可疑内联事件', code);
+        hijackReport('拦截可疑内联事件', code, 1);
       }
     }
 
@@ -170,8 +170,8 @@
       if (blackListMatch(keywordBlackList, string)) {
         // 注销代码
         elem.href = 'javascript:void(0)';
-        console.log('拦截可疑事件:' + code);
-        hijackReport('拦截可疑javascript:代码', code);
+        console.log('拦截可疑javascript:代码:' + code);
+        hijackReport('拦截可疑javascript:代码', code, 2);
       }
     }
 
@@ -205,7 +205,7 @@
             if (node.tagName === 'IFRAME' && node.srcdoc) {
               node.parentNode.removeChild(node);
               console.log('拦截到可疑iframe', node.srcdoc);
-              hijackReport('拦截可疑静态脚本', node.srcdoc);
+              hijackReport('拦截到可疑iframe', node.srcdoc, 3);
 
             } else if (node.src) {
               // 只放行白名单
@@ -213,7 +213,7 @@
                 node.parentNode.removeChild(node);
                 // 上报
                 console.log('拦截可疑静态脚本:', node.src);
-                hijackReport('拦截可疑静态脚本', node.src);
+                hijackReport('拦截可疑静态脚本', node.src, 4);
               }
             }
           }
@@ -242,7 +242,7 @@
       if (/xss/i.test(node.src) || /xss/i.test(node.innerHTML)) {
         node.parentNode.removeChild(node);
         console.log('拦截可疑动态脚本:', node);
-        hijackReport('拦截可疑动态脚本', node.src);
+        hijackReport('拦截可疑动态脚本', node.src, 5);
       }
     }, true);
   }
@@ -260,8 +260,8 @@
 
     window.document.write = function(string) {
       if (blackListMatch(keywordBlackList, string)) {
-        console.log('拦截可疑模块:', string);
-        hijackReport('拦截可疑document-write', string);
+        console.log('拦截可疑document-write:', string);
+        hijackReport('拦截可疑document-write', string, 6);
         return;
       }
 
@@ -286,8 +286,8 @@
       if (this.tagName == 'SCRIPT' && /^src$/i.test(name)) {
 
         if (!whileListMatch(whiteList, value)) {
-          console.log('拦截可疑模块:', value);
-          hijackReport('拦截可疑setAttribute', value);
+          console.log('拦截可疑setAttribute:', value);
+          hijackReport('拦截可疑setAttribute', value,7);
           return;
         }
       }
@@ -402,7 +402,7 @@
       }
       try {
         console.log('页面被嵌入iframe中:', parentUrl);
-        hijackReport('页面被嵌入iframe中', parentUrl);
+        hijackReport('页面被嵌入iframe中', parentUrl, 8);
         top.location.href = parts.join('#');
       } catch (e) {}
     }
@@ -414,12 +414,13 @@
    * @param  {[String]} value [拦截值]
    * @return {[type]}   [description]
    */
-  function hijackReport(name, value) {
+  function hijackReport(name, value, types) {
     var type = 'post',
         ajaxUrl = 'http://127.0.0.1:30031/safeReport',
         iData = {
            msg:name,
            value:value.toString(),
+           types:types,
            curUrl:window.location.href,
            time:new Date().getTime(),
            activeName:'测试'

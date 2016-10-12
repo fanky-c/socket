@@ -40,7 +40,7 @@ app.use(session({
     name:'socket',
     saveUninitialized:true,
     cookie:{
-        maxAge:1000*60*10 //过期时间设置(单位毫秒)
+        maxAge:1000*60*100 //过期时间设置(单位毫秒)
     }
 }));
 
@@ -50,7 +50,7 @@ log4js.configure({
   appenders: [
         {
           type: 'DateFile',
-          filename: 'public/access/access.log',
+          filename: 'public/accesslog/access.log',
           pattern: '-yyyy-MM-dd.log',
           alwaysIncludePattern: true,
           category: 'access'

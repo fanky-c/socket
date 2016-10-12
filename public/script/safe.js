@@ -33,7 +33,7 @@ function render(data,arttemple){
 			json = {
 				data: JSON.parse(data)
 			}
-			flag && highChar();
+			flag && highChar(data);
             arttemple.helper('dateFormat',function(time,format){       
 						var date = new Date(time*1);
 						var map = {
@@ -69,7 +69,18 @@ function render(data,arttemple){
 	})
 }
 
-function highChar(){
+function highChar(data){
+	    var data = data;
+	    var totleSize = JSON.parse(data).length || 1;
+	    var p1 = (getArrayLen(data,'types',1)/totleSize).toFixed(2)*1;
+	    var p2 = (getArrayLen(data,'types',2)/totleSize).toFixed(2)*1;
+	    var p3 = (getArrayLen(data,'types',3)/totleSize).toFixed(2)*1;
+	    var p4 = (getArrayLen(data,'types',4)/totleSize).toFixed(2)*1;
+	    var p5 = (getArrayLen(data,'types',5)/totleSize).toFixed(2)*1;
+	    var p6 = (getArrayLen(data,'types',6)/totleSize).toFixed(2)*1;
+	    var p7 = (getArrayLen(data,'types',7)/totleSize).toFixed(2)*1;
+	    var p8 = (getArrayLen(data,'types',8)/totleSize).toFixed(2)*1;
+
 		$('#container').highcharts({
 			chart: {
 				plotBackgroundColor: null,
@@ -99,20 +110,38 @@ function highChar(){
 				type: 'pie',
 				name: '网站安全份额',
 				data: [
-					['拦截可疑内联事件', 45.0],
-					['拦截可疑javascript:代码', 26.8], 
-					{
-						name: '拦截可疑静态脚本',
-						y: 12.8,
-						sliced: true,
-						selected: true
-					},
-					['拦截可疑动态脚本', 8.5],
-					['拦截可疑document-write', 6.2],
-					['拦截可疑setAttribute', 0.4],
-					['页面被嵌入iframe中',0.3]
+					['拦截可疑内联事件', p1],
+					['拦截可疑javascript:代码', p2],
+					['拦截到可疑iframe',p3],
+					['拦截可疑静态脚本',p4], 
+					['拦截可疑动态脚本', p5],
+					['拦截可疑document-write', p6],
+					['拦截可疑setAttribute', p7],
+					['页面被嵌入iframe中',p8]
 				]
 			}]
 		});
 }
+
+
+/**
+    求出数组中某个元素出现的次数
+**/
+function getArrayLen(arrayObj, attr, target){
+	var sum = 0;
+	var obj = isObj(arrayObj) ? arrayObj : JSON.parse(arrayObj);
+	for (var i = 0; i < obj.length; i++) {
+		if (obj[i][attr] == target) {
+			sum++;
+		}
+	}
+	return sum;
+
+	function isObj(o){
+		return Object.prototype.toString.call(0) === '[object Object]';
+	}
+}
+
+
+
 

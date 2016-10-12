@@ -49,13 +49,13 @@ router.post('/log.html',function(req,res,next){
 
       var cwd = process.cwd();   //当前的路径
 
-      if(!fs.existsSync('./public/log')){
-          fs.mkdirSync('./public/log',0777);
+      if(!fs.existsSync('./public/errorlog')){
+          fs.mkdirSync('./public/errorlog',0777);
       };     
      
       //写入、添加文件
       str.push(req.body);
-      fs.writeFile('./public/log/log.txt', JSON.stringify(str),function(err){
+      fs.writeFile('./public/errorlog/log.txt', JSON.stringify(str),function(err){
             if (err) throw err;
             str.push(req.body);
             console.log('写入jsError文件成功：'+new Date().getTime());         
@@ -64,16 +64,17 @@ router.post('/log.html',function(req,res,next){
 });
 
 //监听jsError日志文件是否变化 
-fs.watchFile('./public/log/log.txt',function(curr, prev){
+fs.watchFile('./public/errorlog/log.txt',function(curr, prev){
      console.log('监听jsError文件前一个状态: ' + prev.mtime);     
      console.log('监听jsError文件现在状态: ' + curr.mtime);    
 });
 
-//生产被劫持文件
+//生成被劫持文件
 var strSafe = [];
 router.post('/safeReport',function(req,res,next){
      var msg = req.body.msg || '';
      var value = req.body.value || '';
+     var types = req.body.types || 1;
      var time = req.body.time;
      var activeName = req.body.activeName || '';  
      
@@ -85,7 +86,7 @@ router.post('/safeReport',function(req,res,next){
      
       //写入、添加文件
       strSafe.push(req.body);
-      fs.writeFile('./public/log/safelog.txt', JSON.stringify(strSafe),function(err){
+      fs.writeFile('./public/safelog/safelog.txt', JSON.stringify(strSafe),function(err){
             if (err) throw err;
             strSafe.push(req.body);
             console.log('写入jsSafe文件成功：'+new Date().getTime());         
@@ -93,6 +94,36 @@ router.post('/safeReport',function(req,res,next){
 
 });
 
+
+//生成性能文件
+var strPerformance = [];
+router.get('/performance.html',function(req,res,next){
+     var t_unload = req.query.t_unload || 0;
+     var t_redirect = req.query.t_redirect || 0;
+     var t_dns = req.query.t_dns || 0;
+     var t_tcp = req.query.t_tcp || 0;
+     var t_request = req.query.t_request || 0; 
+     var t_response = req.query.t_response || 0; 
+     var t_paint = req.query.t_paint || 0; 
+     var t_domready = req.query.t_domready || 0; 
+     var t_onload = req.query.t_onload || 0; 
+     var t_white = req.query.t_white || 0; 
+     var t_all = req.query.t_all || 0; 
+     
+     var cwd = process.cwd();   //当前的路径
+
+      if(!fs.existsSync('./public/performancelog')){
+          fs.mkdirSync('./public/performancelog',0777);
+      };     
+     
+      //写入、添加文件
+      strPerformance.push(req.query);
+      fs.writeFile('./public/performancelog/performancelog.txt', JSON.stringify(strPerformance),function(err){
+            if (err) throw err;
+            strPerformance.push(req.query);
+            console.log('写入strPerformance文件成功：'+new Date().getTime());         
+      }); 
+});
 
 
 //首页

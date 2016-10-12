@@ -71,14 +71,22 @@
 </body>
 <script type="text/javascript" src="/script/require.js"></script>
 <script type="text/javascript">
-    require.config({
-      urlArgs: "bust=" +  (new Date()).getTime()  //线上屏蔽
-    });
+  require.config({
+    urlArgs: "bust=" +  (new Date()).getTime()  //线上屏蔽
+  });
 
-   require(['/script/lib/jquery-1.10.2.min.js'],function(){
-         require(['/script/index.js'],function(index){
-             index.login();
-         });             
-   });
+ require(['/script/lib/jquery-1.10.2.min.js'],function(){
+       require(['/script/index.js','/script/performance-timing.js'],function(index,performance){
+           index.login();
+           performance.start({
+                      url: "http://localhost:30031/performance.html", //后端收集数据的URL，必填
+                      rate: 0.2, //抽样比例，默认是10%抽样
+                      data: { //额外需要记录的数据，非必填
+                          ext_domain: "www.xxx.com", 
+                          ext_path: "_wap_index" 
+                      }
+               });
+       });             
+ });
 </script>
 </html>
