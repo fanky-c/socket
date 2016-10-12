@@ -1,0 +1,1 @@
+[{"t_redirect":"62","t_request":"31","t_response":"4","t_paint":"638","t_dom":"124","t_domready":"233","t_load":"317","t_onload":"426","t_white":"95","t_all":"461","ext_domain":"www.xxx.com","ext_path":"_wap_index"}]
