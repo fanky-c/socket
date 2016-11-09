@@ -110,14 +110,14 @@ function highChar(data){
 				type: 'pie',
 				name: '网站安全份额',
 				data: [
-					['拦截可疑内联事件', p1],
-					['拦截可疑javascript:代码', p2],
-					['拦截到可疑iframe',p3],
-					['拦截可疑静态脚本',p4], 
-					['拦截可疑动态脚本', p5],
-					['拦截可疑document-write', p6],
-					['拦截可疑setAttribute', p7],
-					['页面被嵌入iframe中',p8]
+					['拦截可疑内联事件,type=1', p1],
+					['拦截可疑javascript代码,type=2', p2],
+					['拦截到可疑iframe,type=3',p3],
+					['拦截可疑静态脚本,type=4',p4], 
+					['拦截可疑动态脚本,type=5', p5],
+					['拦截可疑document-write,type=6', p6],
+					['拦截可疑setAttribute,type=7', p7],
+					['页面被嵌入iframe中,type=8',p8]
 				]
 			}]
 		});
@@ -138,7 +138,7 @@ function getArrayLen(arrayObj, attr, target){
 	return sum;
 
 	function isObj(o){
-		return Object.prototype.toString.call(0) === '[object Object]';
+		return Object.prototype.toString.call(o) === '[object Object]';
 	}
 }
 
