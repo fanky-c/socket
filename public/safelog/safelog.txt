@@ -1,1 +1,0 @@
-[{"msg":"拦截可疑document-write","value":"XSS hijack","types":"6","curUrl":"http://localhost:30031/safe.html","time":"1478658474693","activeName":"测试"}]

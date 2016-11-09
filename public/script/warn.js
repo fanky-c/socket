@@ -18,7 +18,7 @@ require.config({
 
 require(['arttemple','io','highcharts'],function(arttemple,io){
         var socket = io.connect('http://127.0.0.1:30031');
-        socket.on('log', function (data) {
+        socket.on('errorlog', function (data) {
 	        var json = data.log;
 	        render(json,arttemple);
         });       

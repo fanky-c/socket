@@ -1,1 +1,14 @@
-[{"t_redirect":"34","t_request":"11","t_response":"1","t_paint":"236","t_dom":"45","t_domready":"98","t_load":"173","t_onload":"226","t_white":"47","t_all":"236","ext_domain":"www.xxx.com","ext_path":"_wap_index"}]
+[{
+	"t_tcp": "1",
+	"t_request": "23",
+	"t_response": "1",
+	"t_paint": "477",
+	"t_dom": "101",
+	"t_domready": "144",
+	"t_load": "380",
+	"t_onload": "423",
+	"t_white": "27",
+	"t_all": "464",
+	"ext_domain": "www.xxx.com",
+	"ext_path": "_wap_index"
+}]
