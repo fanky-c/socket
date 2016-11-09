@@ -98,6 +98,7 @@ router.post('/safeReport',function(req,res,next){
 //生成性能文件
 var strPerformance = [];
 router.get('/performance.html',function(req,res,next){
+  console.log(req.query);
      var t_unload = req.query.t_unload || 0;
      var t_redirect = req.query.t_redirect || 0;
      var t_dns = req.query.t_dns || 0;

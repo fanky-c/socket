@@ -74,8 +74,7 @@
 		              url: "http://localhost:30031/performance.html", //后端收集数据的URL，必填
 		              rate: 0.2, //抽样比例，默认是10%抽样
 		              data: { //额外需要记录的数据，非必填
-		                  ext_domain: "www.xxx.com", 
-		                  ext_path: "_wap_index" 
+		                  ext_domain: window.location.href, 
 		              }
 		       });
 		});

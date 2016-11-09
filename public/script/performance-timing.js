@@ -72,9 +72,10 @@
                 "t_white": timing.responseStart - startTime, //*白屏时间
                 "t_all": timing.loadEventEnd - startTime //整个过程的时间之和
             };
+
             for (var key in data) {
-                //删除无用数据，避免干扰(小于等于0或大于两分钟)
-                if (data[key] <= 0 || data[key] >= 120000) {
+                //删除无用数据，避免干扰(小于0或大于两分钟)
+                if (data[key] < 0 || data[key] > 120000) {
                     delete data[key];
                 }
             }
