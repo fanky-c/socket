@@ -34,7 +34,8 @@
     </div>
  </div>
 <!--头部END--> 
-  <div class="inputDiv">
+
+<!--   <div class="inputDiv">
       <form>
          <input type="text" name="url" class="url"/>
          <button id="postBtn">提交</button>
@@ -42,54 +43,102 @@
   </div>
   <div class="showIframeWrap">
       <iframe frameborder="0" width="100%" height="100%" src=""></iframe>
-  </div>
+  </div> -->
 
+
+    <div id="container" style="width: 90%; margin:130px auto 0 auto;"></div>
+    <div class="showErrorMessage" id="showErrorMessage">
+    </div>
 </body>
-<script type="text/javascript" src="/script/require.js"></script>
-<script type="text/javascript">
-     require(['/script/lib/jquery-1.10.2.min.js'],function(){
-          post($);   
-     });
 
-     function post($){
-         var btn = $('#postBtn');
-         var iframe = $('.showIframeWrap iframe');
-         var input = $('.inputDiv .url');
-         btn.on('click',function(){
-            var url = input.val();
-            var reg = /(\w+):\/\/([^\:|\/]+)(\:\d*)?(.*\/)([^#|\?|\n]+)?(#.*)?(\?.*)?/i; 
-             if(url.match(reg)){
-                  $('<div class="loading"></div>').appendTo($('body'));              
-                   $.ajax({
-                    url: '/monitor',
-                    dataType: 'json',
-                    data: {
-                      url: url
-                    },
-                    type: 'post',
-                    success: function(json) {
-                      if (json.result === 1) {
-                          iframe.attr({'src':json.url});
-                      }else{
-                           alert('data error');
-                      }
-                      $('.loading').remove(); 
-                    },
-                    error: function(err) {
-                      console.log('error:' + err);
-                      $('.loading').remove();
-                    },
-                    exception: function(ex) {
-                      console.log('exception:' + ex);
-                      $('.loading').remove();
-                    }
-                  });               
-              }else{
-                   alert('请输入正确的网址！')
-              }
+<script type="text/html" id="performanceTemplate">
+        <table width="100%" cellpadding="0" cellspacing="0">
+             <thead>
+               <tr>
+                   <td>上个文档的卸载时间</td>
+                   <td>重定向时间</td>
+                   <td>DNS查询时间</td>
+                   <td>服务器连接时间</td>
+                   <td>服务器响应时间</td>
+                   <td>网页下载时间</td>
+                   <td>首次渲染时间</td>
+                   <td>dom ready时间（阶段）</td>
+                   <td>dom ready时间（总和）</td>
+                   <td>onload时间（阶段）</td>
+                   <td>onload时间（总和）</td>
+                   <td>白屏时间</td>
+                   <td>整个过程的时间之和</td>
+               </tr>
+             </thead>
+             <tbody>
+                [[each data]]
+               <tr>
+                   <td>[[$value.t_unload]]</td>
+                   <td>[[$value.t_redirect]]</td>
+                   <td>[[$value.t_dns]]</td>
+                   <td>[[$value.t_tcp]]</td>
+                   <td>[[$value.t_request]]</td>
+                   <td>[[$value.t_response]]</td>
+                   <td>[[$value.t_paint]]</td>
+                   <td>[[$value.t_dom]]</td>
+                   <td>[[$value.t_domready]]</td>
+                   <td>[[$value.t_load]]</td>
+                   <td>[[$value.t_onload]]</td>
+                   <td>[[$value.t_white]]</td>
+                   <td>[[$value.t_all]]</td>
+               </tr>
+               [[/each]]
+             </tbody>
+        </table>
+
+</script>
+
+<script type="text/javascript" src="/script/require.js"  data-main="/script/performance.js"></script>
+<script type="text/javascript">
+     // require(['/script/lib/jquery-1.10.2.min.js'],function(){
+     //      post($);   
+     // });
+
+     // function post($){
+     //     var btn = $('#postBtn');
+     //     var iframe = $('.showIframeWrap iframe');
+     //     var input = $('.inputDiv .url');
+     //     btn.on('click',function(){
+     //        var url = input.val();
+     //        var reg = /(\w+):\/\/([^\:|\/]+)(\:\d*)?(.*\/)([^#|\?|\n]+)?(#.*)?(\?.*)?/i; 
+     //         if(url.match(reg)){
+     //              $('<div class="loading"></div>').appendTo($('body'));              
+     //               $.ajax({
+     //                url: '/monitor',
+     //                dataType: 'json',
+     //                data: {
+     //                  url: url
+     //                },
+     //                type: 'post',
+     //                success: function(json) {
+     //                  if (json.result === 1) {
+     //                      iframe.attr({'src':json.url});
+     //                  }else{
+     //                       alert('data error');
+     //                  }
+     //                  $('.loading').remove(); 
+     //                },
+     //                error: function(err) {
+     //                  console.log('error:' + err);
+     //                  $('.loading').remove();
+     //                },
+     //                exception: function(ex) {
+     //                  console.log('exception:' + ex);
+     //                  $('.loading').remove();
+     //                }
+     //              });               
+     //          }else{
+     //               alert('请输入正确的网址！')
+     //          }
                 
-              return false;
-         }); 
-     };
+     //          return false;
+     //     }); 
+     // };
+
 </script>
 </html>

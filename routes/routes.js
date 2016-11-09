@@ -104,8 +104,10 @@ router.get('/performance.html',function(req,res,next){
      var t_tcp = req.query.t_tcp || 0;
      var t_request = req.query.t_request || 0; 
      var t_response = req.query.t_response || 0; 
-     var t_paint = req.query.t_paint || 0; 
-     var t_domready = req.query.t_domready || 0; 
+     var t_paint = req.query.t_paint || 0;
+     var t_dom = req.query.t_dom || 0; 
+     var t_domready = req.query.t_domready || 0;
+     var t_load = req.query.t_load || 0;  
      var t_onload = req.query.t_onload || 0; 
      var t_white = req.query.t_white || 0; 
      var t_all = req.query.t_all || 0; 
