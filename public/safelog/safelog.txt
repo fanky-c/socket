@@ -1,1 +1,1 @@
-[{"msg":"拦截可疑静态脚本","value":"http://localhost:30031/script/lib/normal/normal.js","types":"4","curUrl":"http://localhost:30031/safe.html","time":"1478687359086","activeName":"测试"}]
+[{"msg":"拦截可疑静态脚本","value":"http://localhost:30031/script/lib/normal/normal.js","types":"4","curUrl":"http://localhost:30031/safe.html","time":"1478689301606","activeName":"测试"}]

@@ -72,6 +72,7 @@ fs.watchFile('./public/errorlog/log.txt',function(curr, prev){
 //生成被劫持文件
 var strSafe = [];
 router.post('/safeReport',function(req,res,next){
+  console.log('safeReportsafeReportsafeReportsafeReport');
      var msg = req.body.msg || '';
      var value = req.body.value || '';
      var types = req.body.types || 1;
