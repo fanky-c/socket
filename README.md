@@ -7,4 +7,4 @@
 
 1，安装mongodb数据库(socket==>users)
 
-2，开启nodejs服务器 node(如果安装了supervisor ./bin/www) ./bin/www
+2，开启nodejs服务器 node ./bin/www (如果安装了supervisor ./bin/www) 
