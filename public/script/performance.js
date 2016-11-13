@@ -72,7 +72,7 @@ function showChart(json){
       yAxis: {
         min: 0,
         title: {
-          text: 'Population (millions)'
+          text: '消耗时间(毫秒)'
         }
       },
       legend: {
