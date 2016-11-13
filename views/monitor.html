@@ -47,14 +47,13 @@
 
 
     <div id="container" style="width: 90%; margin:130px auto 0 auto;"></div>
-    <div class="showErrorMessage" id="showErrorMessage">
-    </div>
+    <div class="showErrorMessage" id="showErrorMessage"></div>
 </body>
 
 <script type="text/html" id="performanceTemplate">
         <table width="100%" cellpadding="0" cellspacing="0">
              <thead>
-               <tr>
+               <tr>                  
                    <td>上个文档的卸载时间</td>
                    <td>重定向时间</td>
                    <td>DNS查询时间</td>
@@ -68,11 +67,12 @@
                    <td>onload时间（总和）</td>
                    <td>白屏时间</td>
                    <td>整个过程的时间之和</td>
+                   <td>当前地址</td>
                </tr>
              </thead>
              <tbody>
                 [[each data]]
-               <tr>
+               <tr>                   
                    <td>[[$value.t_unload]]</td>
                    <td>[[$value.t_redirect]]</td>
                    <td>[[$value.t_dns]]</td>
@@ -86,6 +86,7 @@
                    <td>[[$value.t_onload]]</td>
                    <td>[[$value.t_white]]</td>
                    <td>[[$value.t_all]]</td>
+                   <td><a target="_blank" href="[[$value.ext_domain]]">[[$value.ext_domain]]</a></td>
                </tr>
                [[/each]]
              </tbody>

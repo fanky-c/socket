@@ -1,1 +1,1 @@
-[{"t_unload":"0","t_redirect":"0","t_dns":"1","t_tcp":"0","t_request":"27","t_response":"1","t_paint":"267","t_dom":"51","t_domready":"90","t_load":"204","t_onload":"243","t_white":"32","t_all":"252","ext_domain":"http://localhost:30031/safe.html","ext_path":"_safe.html"}]
+[{"t_unload":"0","t_redirect":"0","t_dns":"0","t_tcp":"0","t_request":"19","t_response":"2","t_paint":"469","t_dom":"67","t_domready":"111","t_load":"239","t_onload":"283","t_white":"34","t_all":"296","ext_domain":"http://127.0.0.1:30031/safe.html","ext_path":"_safe.html"}]

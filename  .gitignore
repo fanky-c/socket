@@ -1,0 +1,8 @@
+#忽略 node_modules/ 目录下的所有文件
+ node_modules/
+
+
+
+#git rm -r --cached dirname
+#git commit -m 'say something'
+#git push origin master

@@ -6,7 +6,11 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
+
 var app = express();
+
+// var expressValidator = require("express-validator"); //net::err_empty_response
+// app.use(expressValidator());
 
 
 

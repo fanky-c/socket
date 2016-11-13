@@ -71,13 +71,12 @@ fs.watchFile('./public/errorlog/log.txt',function(curr, prev){
 
 //生成被劫持文件
 var strSafe = [];
-router.post('/safeReport',function(req,res,next){
-  console.log('safeReportsafeReportsafeReportsafeReport');
-     var msg = req.body.msg || '';
-     var value = req.body.value || '';
-     var types = req.body.types || 1;
-     var time = req.body.time;
-     var activeName = req.body.activeName || '';  
+router.get('/safeReport',function(req,res,next){
+     var msg = req.query.msg || '';
+     var value = req.query.value || '';
+     var types = req.query.types || 1;
+     var time = req.query.time;
+     var activeName = req.query.activeName || '';  
      
      var cwd = process.cwd();   //当前的路径
 
@@ -86,10 +85,10 @@ router.post('/safeReport',function(req,res,next){
       };     
      
       //写入、添加文件
-      strSafe.push(req.body);
+      strSafe.push(req.query);
       fs.writeFile('./public/safelog/safelog.txt', JSON.stringify(strSafe),function(err){
             if (err) throw err;
-            strSafe.push(req.body);
+            strSafe.push(req.query);
             console.log('写入jsSafe文件成功：'+new Date().getTime());         
       });
 

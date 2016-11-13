@@ -415,24 +415,25 @@
    * @return {[type]}   [description]
    */
   function hijackReport(name, value, types) {
-    var type = 'post',
-        ajaxUrl = 'http://127.0.0.1:30031/safeReport',
-        iData = {
-           msg:name,
-           value:value.toString(),
-           types:types,
-           curUrl:window.location.href,
-           time:new Date().getTime(),
-           activeName:'测试'
-        };
-      ajax(type, ajaxUrl, iData, function(data){
-              console.log('safeReport'+data);
-      },function(err){
-              console.log(err);
-      });
+    // var type = 'post',
+    //     ajaxUrl = 'http://127.0.0.1:30031/safeReport',
+    //     iData = {
+    //        msg:name,
+    //        value:value.toString(),
+    //        types:types,
+    //        curUrl:window.location.href,
+    //        time:new Date().getTime(),
+    //        activeName:'测试'
+    //     };
+    //   ajax(type, ajaxUrl, iData, function(data){
+    //           console.log('safeReport'+data);
+    //   },function(err){
+    //           console.log(err);
+    //   });
 
        // 上报
-       //img.src = 'http://127.0.0.1:30031/safeReport/?msg=' + hijackName + '&value=' + hijackValue + '&time=' + curDate;
+       var img = new Image();
+       img.src = 'http://127.0.0.1:30031/safeReport/?msg=' + name + '&value=' + value.toString() + '&types=' + types + '&curUrl=' + window.location.href + '&time=' + new Date().getTime()+ '&activeName=' + '测试';
   }
 
   /**
