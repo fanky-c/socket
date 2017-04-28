@@ -1,8 +1,3 @@
-/*
- * performance-timing.js 0.2
- * https://github.com/tjuking/performance-timing
- */
-
 (function (global, factory) {
 
     "use strict";
